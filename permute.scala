@@ -21,9 +21,12 @@ package Permute {
         else {
           val m = l.head
           val newl = Range(1, n).map (x => swap(m, x)).filter (x => ! s.contains(x))
-          val newl2 = if (l.size < 6) newl.toVector.par else newl.view
-          val l2 =  newl2.map (x => k(x +: l, s + x)).filter(! _.isEmpty).map(_.get).headOption
-          if (l2.isEmpty) null; //println ("*"+ l.size)
+          val l2 = (if (l.size < 5) 
+              newl.toVector.par.map (x => k(x +: l, s + x)).filter(! _.isEmpty).map(_.get).headOption
+            else 
+              newl.view.map (x => k(x +: l, s + x)).filter(! _.isEmpty).map(_.get).headOption
+            )
+          if (l2.isEmpty) if (l.size >= 118) println ("*"+ l.size) else null
           else println ("!" + l2.map(_.map (permToString)).toString)
           l2
         }
