@@ -16,6 +16,7 @@ package Permute {
           a.updated(b - 1, a(b)).updated(b, a(b-1))
 
         if (l.size == length) {
+          println ("!" + l.map(permToString).toString)
           Some(l)
         }
         else {
@@ -33,8 +34,6 @@ package Permute {
               finall
             }
             )
-          if (l2.isEmpty) if (l.size >= 118) println ("*"+ l.size) else null
-          else println ("!" + l2.map(_.map (permToString)).toString)
           l2
         }
       }
@@ -42,13 +41,13 @@ package Permute {
       k (List(start), Set(start)) 
     }
     def main (args: Array[String]) : Unit = {
-      var i : Int = args(0).toInt
-      // while (true) {
+      var i : Int = 1; // args(0).toInt
+      while (true) {
         val l = perm (i)
         val ls = l.map(_.map (permToString))
         println (i.toString + " : " + ls.toString)
-      //  i = i + 1
-      //}
+        i = i + 1
+      }
     }
   }
 }
