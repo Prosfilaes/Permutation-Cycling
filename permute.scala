@@ -23,8 +23,15 @@ package Permute {
           val newl = Range(1, n).map (x => swap(m, x)).filter (x => ! s.contains(x))
           val l2 = (if (l.size < 5) 
               newl.toVector.par.map (x => k(x +: l, s + x)).filter(! _.isEmpty).map(_.get).headOption
-            else 
-              newl.view.map (x => k(x +: l, s + x)).filter(! _.isEmpty).map(_.get).headOption
+            else {
+              var finall : Option[List[Perm]] = None
+              for (i <- newl) {
+                if (finall == None) {
+                  finall = k(i +: l, s + i)
+                }
+              }
+              finall
+            }
             )
           if (l2.isEmpty) if (l.size >= 118) println ("*"+ l.size) else null
           else println ("!" + l2.map(_.map (permToString)).toString)
