@@ -51,13 +51,10 @@ package Permute {
       k (List(start), Set(start)) 
     }
     def main (args: Array[String]) : Unit = {
-      var i : Int = 1; // args(0).toInt
-      while (i < 6) {
-        val l = perm (i)
-        val ls = l.map(_.map (permToString))
-        println (i.toString + " : " + ls.toString)
-        i = i + 1
-      }
+      var i : Int = args(0).toInt
+      val l = perm (i)
+      val ls = l.map(_.map (permToString))
+      println (i.toString + " : " + ls.toString)
     }
   }
 }
