@@ -19,10 +19,14 @@ package Permute {
           println ("!" + l.map(permToString).toString)
           Some(l)
         }
+        else if (l.size == 1) {
+          val firstSwap = swap (l.head, 1)
+          k (firstSwap +: l, s + firstSwap) 
+        }
         else {
           val m = l.head
           val newl = Range(1, n).map (x => swap(m, x)).filter (x => ! s.contains(x))
-          val l2 = (if (l.size < 5) 
+          val l2 = (if (l.size < 4) 
               newl.toVector.par.map (x => k(x +: l, s + x)).filter(! _.isEmpty).map(_.get).headOption
             else {
               var finall : Option[List[Perm]] = None
@@ -42,7 +46,7 @@ package Permute {
     }
     def main (args: Array[String]) : Unit = {
       var i : Int = 1; // args(0).toInt
-      while (true) {
+      while (i < 6) {
         val l = perm (i)
         val ls = l.map(_.map (permToString))
         println (i.toString + " : " + ls.toString)
