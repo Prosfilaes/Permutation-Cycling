@@ -22,7 +22,6 @@ package Permute {
           None
         }
         else if (l.size == length) {
-          println ("!" + l.map(permToString).toString)
           abort.set(true)
           Some(l)
         }
