@@ -29,5 +29,3 @@ This is 119 switches (5! - 1). Six strings will take 719 switches. I've run this
 on 16 threads for a week, with no results. I suspect an algorithm with a better big O will
 be needed to produce a result. (I suspect an O(n) algorithm may be possible.)
 
-This file and program is under the CC-O.
-
